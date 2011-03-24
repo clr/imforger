@@ -14,11 +14,12 @@ Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "forgery"
   gem.homepage = "http://github.com/clr/forgery"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.license = "GPLv3"
+  gem.summary = %Q{Forgery takes an image and very quickly make a copy to another format/dimension.}
+  gem.description = %Q{Forgery relies on the Imlib2 library to quickly convert between different file types, scaling and compressing on the way.}
   gem.email = "clr@port49.com"
   gem.authors = ["CLR"]
+  gem.extensions = FileList['ext/**/extconf.rb']
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'

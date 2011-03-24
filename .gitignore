@@ -5,7 +5,6 @@ coverage
 rdoc
 
 # yard generated
-doc
 .yardoc
 
 # bundler
@@ -39,4 +38,9 @@ pkg
 #.\#*
 #
 # For vim:
-#*.swp
+*.swp
+.DS_Store
+**~
+**.swp
+
+repos

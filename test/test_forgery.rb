@@ -1,7 +1,9 @@
 require 'helper'
 
 class TestForgery < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
-  end
+  test "that we raise an error if the input file path doesn't exist" do
+		assert_raise Forgery::Exception do
+			Forgery.new('./this_file_doesnt_exist')
+		end
+	end
 end
