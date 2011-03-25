@@ -3,8 +3,8 @@ History.txt
 Manifest.txt
 README.txt
 Rakefile
-ext/forgery/extconf.rb
-ext/forgery/forgery.c
-lib/forgery.rb
+ext/imforger/extconf.rb
+ext/imforger/imforger.c
+lib/imforger.rb
 test/helper.rb
-test/test_forgery.rb
+test/test_imforger.rb

@@ -11,7 +11,7 @@ require "rake/extensiontask"
 
 Hoe.plugin :git, :doofus, :gemcutter
 
-Hoe.spec 'forgery' do
+Hoe.spec 'imforger' do
   developer 'Casey Rosenthal', 'clr@port49.com'
 
   self.history_file      = 'History.txt'
@@ -20,9 +20,9 @@ Hoe.spec 'forgery' do
 
   extra_dev_deps << ['rake-compiler', '>= 0.4.1']
 
-  self.spec_extras = {:extensions => ['ext/forgery/extconf.rb']}
+  self.spec_extras = {:extensions => ['ext/imforger/extconf.rb']}
 
-  Rake::ExtensionTask.new "forgery", spec do |ext|
+  Rake::ExtensionTask.new "imforger", spec do |ext|
     ext.lib_dir = File.join(*['lib', ENV['FAT_DIR']].compact)
   end
 end

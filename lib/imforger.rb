@@ -1,6 +1,6 @@
-require 'forgery.so'
+require 'imforger.so'
 
-class Forgery
+class Imforger
   VERSION = '0.1.1'
 
   attr_accessor :input_image, :output_image
@@ -10,7 +10,7 @@ class Forgery
   def initialize(path)
     path = File.expand_path(path)
 
-    raise(Forgery::Exception, "Input file not found!") unless File.exists?(path)
+    raise(Imforger::Exception, "Input file not found!") unless File.exists?(path)
     @input_image = path
   end
 

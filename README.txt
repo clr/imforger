@@ -1,8 +1,8 @@
-= forgery
+= imforger
 
 == DESCRIPTION:
 
-Forgery relies on the Imlib2 library to quickly convert between different file types, scaling and compressing on the way.
+Imforger relies on the Imlib2 library to quickly convert between different file types, scaling and compressing on the way.
 
 == FEATURES/PROBLEMS:
 
@@ -12,8 +12,8 @@ Imlib2 drops the ICC profile and XMP tags when it creates the new image.  I have
 
 == SYNOPSIS:
 
-require 'forgery'
-Forgery.new(input_file_path).to_file(output_file_path)
+require 'imforger'
+Imforger.new(input_file_path).to_file(output_file_path)
 
 == REQUIREMENTS:
 
@@ -21,7 +21,7 @@ Imlib2
 
 == INSTALL:
 
-gem install forgery
+gem install imforger
 
 == SPEED:
 

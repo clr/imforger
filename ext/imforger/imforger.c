@@ -10,7 +10,7 @@
 /* ruby */
 #include <ruby.h>
 
-static VALUE forgery_save_file(VALUE self, VALUE anObject)
+static VALUE imforger_save_file(VALUE self, VALUE anObject)
 {
   VALUE input_image;
   VALUE output_image;
@@ -54,9 +54,9 @@ static VALUE forgery_save_file(VALUE self, VALUE anObject)
   return Qtrue;
 }
 
-VALUE cForgery;
+VALUE cImforger;
 
-void Init_forgery() {
-  cForgery = rb_define_class("Forgery", rb_cObject);
-  rb_define_private_method(cForgery, "save_file", forgery_save_file, 1);
+void Init_imforger() {
+  cImforger = rb_define_class("Imforger", rb_cObject);
+  rb_define_private_method(cImforger, "save_file", imforger_save_file, 1);
 }
