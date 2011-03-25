@@ -1,0 +1,10 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+ext/forgery/extconf.rb
+ext/forgery/forgery.c
+lib/forgery.rb
+test/helper.rb
+test/test_forgery.rb

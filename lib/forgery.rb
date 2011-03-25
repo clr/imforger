@@ -1,14 +1,20 @@
 require 'forgery.so'
 
 class Forgery
-	attr_accessor :input_image, :output_image
+  VERSION = '0.1.1'
 
-	class Exception < RuntimeError; end
+  attr_accessor :input_image, :output_image
 
-	def initialize(path)
-		path = File.expand_path(path)
+  class Exception < RuntimeError; end
 
-		raise(Forgery::Exception, "Input file not found!") unless File.exists?(path)
-		@input_image = path
-	end
+  def initialize(path)
+    path = File.expand_path(path)
+
+    raise(Forgery::Exception, "Input file not found!") unless File.exists?(path)
+    @input_image = path
+  end
+
+  def to_file(output_path)
+    save_file(File.expand_path(output_path))
+  end
 end

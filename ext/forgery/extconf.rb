@@ -6,4 +6,4 @@ raise "This Ruby gem requires the Imlib2 library to do the hard work.  You might
   raise "Library #{lib} not found." unless have_library(lib)
 end
 
-create_makefile('fast_resizer')
+create_makefile('forgery')
