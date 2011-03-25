@@ -1,35 +1,31 @@
 = forgery
 
-* FIX (url)
-
 == DESCRIPTION:
 
-FIX (describe your package)
+Forgery relies on the Imlib2 library to quickly convert between different file types, scaling and compressing on the way.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+As far as I know, this gem only works on Linux and Ruby 1.9+
+
+Imlib2 drops the ICC profile and XMP tags when it creates the new image.  I have been using exiftool to copy the ICC profile and XMP tags over.  This is still much faster than ImageMagick et al.
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+require 'forgery'
+Forgery.new(input_file_path).to_file(output_file_path)
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+Imlib2
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+gem install forgery
 
-== DEVELOPERS:
+== SPEED:
 
-After checking out the source, run:
-
-  $ rake newb
-
-This task will install any missing dependencies, run the tests/specs,
-and generate the RDoc.
+ImageMagick was too slow and used too much memory.  [I didn't even bother frobnicating with RMagick.]  I also compared to the NetPBM library for good measure.
 
 == LICENSE:
 

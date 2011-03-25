@@ -1,10 +1,15 @@
 require 'rubygems'
 require 'hoe'
 
+class Hoe
+  remove_const :RUBY_FLAGS
+  RUBY_FLAGS = "-I#{%w(lib ext test).join(File::PATH_SEPARATOR)}"
+end
+
 gem 'rake-compiler', '>= 0.4.1'
 require "rake/extensiontask"
 
-Hoe.plugin :git, :gemcutter
+Hoe.plugin :git, :doofus, :gemcutter
 
 Hoe.spec 'forgery' do
   developer 'Casey Rosenthal', 'clr@port49.com'
