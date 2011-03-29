@@ -1,0 +1,26 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    gemcutter (0.7.0)
+    hoe (2.9.1)
+      rake (>= 0.8.7)
+    hoe-doofus (1.0.0)
+    hoe-gemcutter (1.0.0)
+      gemcutter (>= 0.1.3)
+      hoe (>= 2.3.3)
+    hoe-git (1.3.0)
+      hoe (>= 2.2.0)
+    rake (0.8.7)
+    rake-compiler (0.7.6)
+      rake
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  hoe
+  hoe-doofus
+  hoe-gemcutter
+  hoe-git
+  rake-compiler

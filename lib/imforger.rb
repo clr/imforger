@@ -3,7 +3,7 @@ require 'imforger.so'
 class Imforger
   VERSION = '0.1.1'
 
-  attr_accessor :input_image, :output_image
+  attr_accessor :input_image, :output_image, :options
 
   class Exception < RuntimeError; end
 
@@ -12,6 +12,7 @@ class Imforger
 
     raise(Imforger::Exception, "Input file not found!") unless File.exists?(path)
     @input_image = path
+    @options = {}
   end
 
   def to_file(output_path)

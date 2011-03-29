@@ -10,7 +10,7 @@
 /* ruby */
 #include <ruby.h>
 
-static VALUE imforger_save_file(VALUE self, VALUE anObject)
+static VALUE imforger_save_file(VALUE self, VALUE outputString)
 {
   VALUE input_image;
   VALUE output_image;
@@ -21,10 +21,16 @@ static VALUE imforger_save_file(VALUE self, VALUE anObject)
   Imlib_Image image2;
 
   input_image = rb_iv_get(self, "@input_image");
-  output_image = rb_iv_set(self, "@output_image", anObject);
+  output_image = rb_iv_set(self, "@output_image", outputString);
 
   imagePath1 = StringValuePtr(input_image);
   imagePath2 = StringValuePtr(output_image);
+
+  /* for traversing the options hash */
+  VALUE r_width;
+  VALUE r_height;
+  int width;
+  int height;
 
   /* check that the file exists and can be read */
   /* TODO: raise a real error */
@@ -40,12 +46,29 @@ static VALUE imforger_save_file(VALUE self, VALUE anObject)
     char *tmp;
     /* set the image1 we loaded as the current context image1 to work on */
     imlib_context_set_image(image1);
+
+    /* if the width and height were set, use that; otherwise use the
+     * current dimensions */
+    r_width  = rb_eval_string("@options[:width]");
+    r_height = rb_eval_string("@options[:height]");
+
+    if(r_width == Qnil){
+      width = imlib_image_get_width();
+    } else {
+      width = NUM2INT(r_width);
+    }
+    if(r_height == Qnil){
+      height = imlib_image_get_height();
+    } else {
+      height = NUM2INT(r_height);
+    }
+
     /* set the image1 format to be the format of the extension of our last */
     /* argument - i.e. .png = png, .tif = tiff etc. */
     tmp = strrchr(imagePath2, '.');
       if(tmp)
         imlib_context_set_anti_alias(1);
-        image2 = imlib_create_cropped_scaled_image(0,0,imlib_image_get_width(),imlib_image_get_height(),100,100);
+        image2 = imlib_create_cropped_scaled_image(0,0,imlib_image_get_width(),imlib_image_get_height(),width,height);
         imlib_context_set_image(image2);
         imlib_image_set_format(tmp + 1);
       /* save the image1 */

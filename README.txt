@@ -6,7 +6,8 @@ Imforger relies on the Imlib2 library to quickly convert between different file 
 
 == FEATURES/PROBLEMS:
 
-As far as I know, this gem only works on Linux and Ruby 1.9+
+As far as I know, this gem only works on Linux and Ruby 1.9+  Anyone
+know how to install the dev files for Imlib2, please let me know.
 
 Imlib2 drops the ICC profile and XMP tags when it creates the new image.  I have been using exiftool to copy the ICC profile and XMP tags over.  This is still much faster than ImageMagick et al.
 

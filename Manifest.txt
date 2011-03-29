@@ -3,8 +3,10 @@ History.txt
 Manifest.txt
 README.txt
 Rakefile
+benchmark/benchmark.rb
 ext/imforger/extconf.rb
 ext/imforger/imforger.c
 lib/imforger.rb
 test/helper.rb
 test/test_imforger.rb
+test/fixtures/large.original.jpg
