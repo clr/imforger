@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'psych'
 require 'hoe'
 
 class Hoe

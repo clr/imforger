@@ -32,13 +32,13 @@ Benchmark.bm(12) do |x|
 
   x.report("Imlib") do
     fr = Imforger.new @input_file
-    fr.to_file "#{@output_file.call('Imlib')}"
+    fr.to_file "#{@output_file.call('Imlib')}", 'width' => 100, 'height' => 100
   end if benchmark.include?(:imlib)
 
   #cleanup files
   if true  && false
     FileUtils.rm @input_file
-    [ 'ImageMagick', 'NetPBM', 'Imlib'].each do |type|
+    [ 'ImageMagick', 'NetPBM', 'Imforger'].each do |type|
       FileUtils.rm @output_file.call(type)
     end
   end

@@ -12,25 +12,31 @@
 
 static VALUE imforger_save_file(VALUE self, VALUE outputString)
 {
-  VALUE input_image;
-  VALUE output_image;
+  VALUE r_input_image;
+  VALUE r_output_image;
+  VALUE r_options;
+  VALUE r_width;
+  VALUE r_height;
+  VALUE r_maxwidth;
+  VALUE r_maxheight;
+
   char *imagePath1;
   char *imagePath2;
+
+  int width;
+  int height;
+  float scale;
+
   /* image handles */
   Imlib_Image image1;
   Imlib_Image image2;
 
-  input_image = rb_iv_get(self, "@input_image");
-  output_image = rb_iv_set(self, "@output_image", outputString);
+  r_input_image  = rb_iv_get(self, "@input_image");
+  r_output_image = rb_iv_set(self, "@output_image", outputString);
+  r_options      = rb_iv_get(self, "@options");
 
-  imagePath1 = StringValuePtr(input_image);
-  imagePath2 = StringValuePtr(output_image);
-
-  /* for traversing the options hash */
-  VALUE r_width;
-  VALUE r_height;
-  int width;
-  int height;
+  imagePath1 = StringValuePtr(r_input_image);
+  imagePath2 = StringValuePtr(r_output_image);
 
   /* check that the file exists and can be read */
   /* TODO: raise a real error */
@@ -49,9 +55,8 @@ static VALUE imforger_save_file(VALUE self, VALUE outputString)
 
     /* if the width and height were set, use that; otherwise use the
      * current dimensions */
-    r_width  = rb_eval_string("@options[:width]");
-    r_height = rb_eval_string("@options[:height]");
-
+    r_width  = rb_hash_aref(r_options, rb_str_new2("width"));
+    r_height = rb_hash_aref(r_options, rb_str_new2("height"));
     if(r_width == Qnil){
       width = imlib_image_get_width();
     } else {
@@ -63,7 +68,26 @@ static VALUE imforger_save_file(VALUE self, VALUE outputString)
       height = NUM2INT(r_height);
     }
 
-    /* set the image1 format to be the format of the extension of our last */
+    /* going for maximum height */
+    r_maxwidth  = rb_hash_aref(r_options, rb_str_new2("maxwidth"));
+    r_maxheight = rb_hash_aref(r_options, rb_str_new2("maxheight"));
+    if(r_maxwidth != Qnil){
+      if(width > NUM2INT(r_maxwidth)){
+        scale  = NUM2INT(r_maxwidth) / (float)width;
+        width  = NUM2INT(r_maxwidth);
+        height = (int)(scale * height);
+      }
+    }
+    if(r_maxheight != Qnil){
+      if(height > NUM2INT(r_maxheight)){
+        scale  = NUM2INT(r_maxheight) / (float)height;
+        height = NUM2INT(r_maxheight);
+        width  = (int)(scale * width);
+      }
+    }
+
+    /* set the image1 format 
+     * to be the format of the extension of our last */
     /* argument - i.e. .png = png, .tif = tiff etc. */
     tmp = strrchr(imagePath2, '.');
       if(tmp)

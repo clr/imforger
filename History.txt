@@ -1,6 +1,5 @@
-=== 1.0.0 / 2011-03-25
+=== 0.2.0 / 2011-03-31
 
-* 1 major enhancement
-
-  * Birthday!
+* Library now supports :maxwidth, :maxheight
+* Includes benchmark/benchmark.rb
 
