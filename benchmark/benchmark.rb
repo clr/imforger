@@ -32,7 +32,7 @@ Benchmark.bm(12) do |x|
 
   x.report("Imlib") do
     fr = Imforger.new @input_file
-    fr.to_file "#{@output_file.call('Imlib')}", 'width' => 100, 'height' => 100
+    fr.to_file "#{@output_file.call('Imlib')}", :width => 100, :height => 100
   end if benchmark.include?(:imlib)
 
   #cleanup files

@@ -19,9 +19,11 @@ static VALUE imforger_save_file(VALUE self, VALUE outputString)
   VALUE r_height;
   VALUE r_maxwidth;
   VALUE r_maxheight;
+  VALUE r_format;
 
   char *imagePath1;
   char *imagePath2;
+  char *format;
 
   int width;
   int height;
@@ -55,8 +57,8 @@ static VALUE imforger_save_file(VALUE self, VALUE outputString)
 
     /* if the width and height were set, use that; otherwise use the
      * current dimensions */
-    r_width  = rb_hash_aref(r_options, rb_str_new2("width"));
-    r_height = rb_hash_aref(r_options, rb_str_new2("height"));
+    r_width  = rb_hash_aref(r_options, ID2SYM(rb_intern("width")));
+    r_height = rb_hash_aref(r_options, ID2SYM(rb_intern("height")));
     if(r_width == Qnil){
       width = imlib_image_get_width();
     } else {
@@ -69,8 +71,8 @@ static VALUE imforger_save_file(VALUE self, VALUE outputString)
     }
 
     /* going for maximum height */
-    r_maxwidth  = rb_hash_aref(r_options, rb_str_new2("maxwidth"));
-    r_maxheight = rb_hash_aref(r_options, rb_str_new2("maxheight"));
+    r_maxwidth  = rb_hash_aref(r_options, ID2SYM(rb_intern("maxwidth")));
+    r_maxheight = rb_hash_aref(r_options, ID2SYM(rb_intern("maxheight")));
     if(r_maxwidth != Qnil){
       if(width > NUM2INT(r_maxwidth)){
         scale  = NUM2INT(r_maxwidth) / (float)width;
@@ -89,15 +91,20 @@ static VALUE imforger_save_file(VALUE self, VALUE outputString)
     /* set the image1 format 
      * to be the format of the extension of our last */
     /* argument - i.e. .png = png, .tif = tiff etc. */
-    tmp = strrchr(imagePath2, '.');
-      if(tmp)
-        imlib_context_set_anti_alias(1);
-        image2 = imlib_create_cropped_scaled_image(0,0,imlib_image_get_width(),imlib_image_get_height(),width,height);
-        imlib_context_set_image(image2);
-        imlib_image_set_format(tmp + 1);
-      /* save the image1 */
-      imlib_save_image(imagePath2);
+    r_format = rb_hash_aref(r_options, ID2SYM(rb_intern("format")));
+    if(r_format != Qnil){
+      format = StringValuePtr(r_format);
+    } else {
+      tmp = strrchr(imagePath2, '.');
+      format = (tmp + 1);
     }
+    imlib_context_set_anti_alias(1);
+    image2 = imlib_create_cropped_scaled_image(0,0,imlib_image_get_width(),imlib_image_get_height(),width,height);
+    imlib_context_set_image(image2);
+    imlib_image_set_format(format);
+    /* save the image1 */
+    imlib_save_image(imagePath2);
+  }
   return Qtrue;
 }
 

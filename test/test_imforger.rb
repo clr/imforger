@@ -31,7 +31,7 @@ class TestImforger < MiniTest::Unit::TestCase
     path = @output_file.call('smaller')
 
     fr = Imforger.new @input_file
-    fr.to_file path, 'width' => 100, 'height' => 100
+    fr.to_file path, :width => 100, :height => 100
     assert File.size(path) > 3000
   end
 
@@ -39,22 +39,22 @@ class TestImforger < MiniTest::Unit::TestCase
     path = @output_file.call('bounded')
 
     fr = Imforger.new @input_file
-    fr.to_file path, 'maxwidth' => 117, 'maxheight' => 120
+    fr.to_file path, :maxwidth => 117, :maxheight => 120
     assert File.size(path) > 3900
   end
 
   def test_creates_new_image_different_format
-    path = "#{@output_file.call('format')}.png"
-
-    fr = Imforger.new @input_file
-    fr.to_file path, 'format' => 'png'
-    assert File.size(path) > 17000000
+    %w(tif png jpg).each do |extension|
+      path = "#{@output_file.call('format')}.#{extension}"
+      fr = Imforger.new(@input_file).to_file(path, :format => extension)
+      assert((File.size(path) > 1500000), "Could not create file of type #{extension}.")
+    end
   end
 
   def test_raises_an_error_if_unknown_format
     fr = Imforger.new @input_file
     assert_raises Imforger::Exception do
-      fr.to_file '/dev/null', 'format' => 'pizza'
+      fr.to_file '/dev/null', :format => 'pizza'
     end
   end
 end

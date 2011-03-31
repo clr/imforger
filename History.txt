@@ -1,3 +1,16 @@
+=== 0.2.2 / 2011-03-31
+
+* Supports explicit format declaration:
+
+Imforger.new(input_file_path).to_file(output_file_path, :format => 'tif')
+
+=== 0.2.1 / 2011-03-31
+
+* Deghettofied the options to use symbols instead of string:
+
+Imforger.new(input_file_path).to_file(output_file_path, :width => 100,
+:height => 100)
+
 === 0.2.0 / 2011-03-31
 
 * Library now supports :maxwidth, :maxheight

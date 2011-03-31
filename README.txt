@@ -19,6 +19,16 @@ Imlib2 drops the ICC profile and XMP tags when it creates the new image.  I have
 require 'imforger'
 Imforger.new(input_file_path).to_file(output_file_path)
 
+or:
+
+Imforger.new(input_file_path).to_file(output_file_path, :width => 100,
+:height => 100)
+
+or:
+
+Imforger.new(input_file_path).to_file(output_file_path, :maxwidth => 1000,
+:maxheight => 1000, :format => 'tif')
+
 See the test file for other examples.
 
 == REQUIREMENTS:
@@ -41,7 +51,8 @@ NetPBM        0.000000   0.000000   0.700000 (  0.391043)
 Imforger      0.310000   0.010000   0.320000 (  0.321695)
 
 Changing the input file size and format showed similar results: Imforger
-is roughly twice as fast as calling out ImageMagick, and still
+is roughly twice as fast as calling out ImageMagick in realtime on a
+dual-core laptop, and also
 noticeably faster than NetPBM.  I don't include memory usage numbers
 here, but anecdotally I did notice significantly less RAM usage with Imforger vs
 ImageMagick.

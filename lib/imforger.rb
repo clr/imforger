@@ -1,7 +1,7 @@
 require 'imforger.so'
 
 class Imforger
-  VERSION = '0.2.0'
+  VERSION = '0.2.2'
 
   attr_accessor :input_image, :output_image, :options
 
@@ -24,8 +24,8 @@ class Imforger
 
 private
   def check_format
-    if @options['format']
-      raise(Imforger::Exception, "I don't know if that file format is supported!") unless %w(tif png jpg gif).include?(@options['format'])
+    if @options[:format]
+      raise(Imforger::Exception, "I don't know if that file format is supported!") unless %w(tif png jpg).include?(@options[:format])
     end
   end
 end
