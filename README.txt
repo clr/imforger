@@ -9,8 +9,8 @@ This class relies on the Imlib2 library to quickly convert between different fil
 
 == FEATURES/PROBLEMS:
 
-As far as I know, this gem only works on Linux and Ruby 1.9+  Anyone
-know how to install the dev files for Imlib2, please let me know.
+I have only tested this gem with Linux and Ruby 1.9+  See MAC
+INSTALLATION instructions below.
 
 Imlib2 drops the ICC profile and XMP tags when it creates the new image.  I have been using exiftool to copy the ICC profile and XMP tags over.  This is still much faster than ImageMagick et al.
 
@@ -56,6 +56,28 @@ dual-core laptop, and also
 noticeably faster than NetPBM.  I don't include memory usage numbers
 here, but anecdotally I did notice significantly less RAM usage with Imforger vs
 ImageMagick.
+
+== MAC INSTALLATION:
+
+The following was contributed by jllamas.  This is how he got the gem
+working on his box.
+
+Install imlib2 (used latest version 1.4.4) from here:
+http://sourceforge.net/projects/enlightenment/files/imlib2-src/
+./configure
+make
+sudo make install
+
+
+Install freetype2 (used latest 2.4.4) from here:
+http://sourceforge.net/projects/freetype/files/freetype2/
+./configure
+make
+sudo make install
+
+gem install imforger -- --with-opt-include=/usr/X11/include --with-opt-lib=/usr/X11/lib
+
+All of this requires xCode to be installed.
 
 == LICENSE:
 
