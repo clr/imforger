@@ -60,46 +60,12 @@ ImageMagick.
 == MAC INSTALLATION:
 
 The following was contributed by jllamas.  This is how he got the gem
-working on his box.
+working on his Mac.
 
-Install imlib2 (used latest version 1.4.4) from here:
-http://sourceforge.net/projects/enlightenment/files/imlib2-src/
-./configure
-make
-sudo make install
-
-
-Install freetype2 (used latest 2.4.4) from here:
-http://sourceforge.net/projects/freetype/files/freetype2/
-./configure
-make
-sudo make install
-
-gem install imforger -- --with-opt-include=/usr/X11/include --with-opt-lib=/usr/X11/lib
-
-All of this requires xCode to be installed.
+sudo port install imlib2
+sudo port install freetype2
+gem install imforger -- --with-opt-include=/opt/local/include --with-opt-lib=/opt/local/lib
 
 == LICENSE:
 
-(The MIT License)
-
-Copyright (c) 2011 FIX
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+See LICENSE.txt
