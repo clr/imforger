@@ -74,18 +74,14 @@ static VALUE imforger_save_file(VALUE self, VALUE outputString)
     r_maxwidth  = rb_hash_aref(r_options, ID2SYM(rb_intern("maxwidth")));
     r_maxheight = rb_hash_aref(r_options, ID2SYM(rb_intern("maxheight")));
     if(r_maxwidth != Qnil){
-      if(width > NUM2INT(r_maxwidth)){
-        scale  = NUM2INT(r_maxwidth) / (float)width;
-        width  = NUM2INT(r_maxwidth);
-        height = (int)(scale * height);
-      }
+      scale  = NUM2INT(r_maxwidth) / (float)width;
+      width  = NUM2INT(r_maxwidth);
+      height = (int)(scale * height);
     }
     if(r_maxheight != Qnil){
-      if(height > NUM2INT(r_maxheight)){
-        scale  = NUM2INT(r_maxheight) / (float)height;
-        height = NUM2INT(r_maxheight);
-        width  = (int)(scale * width);
-      }
+      scale  = NUM2INT(r_maxheight) / (float)height;
+      height = NUM2INT(r_maxheight);
+      width  = (int)(scale * width);
     }
 
     /* set the image1 format 
